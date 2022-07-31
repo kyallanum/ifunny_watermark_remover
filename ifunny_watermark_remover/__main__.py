@@ -8,6 +8,8 @@ from ifunny_watermark_remover._version import __description__, __tool_name__, __
 WATERMARK_PATH = pkg_resources.resource_filename(__tool_name__, "resources/watermark.jpg")
 watermark = None
 args = None
+img_dir = None
+out_dir = None
 
 logger = logging.getLogger(__tool_name__)
 logger.setLevel(logging.INFO)
@@ -26,6 +28,24 @@ def parse_args() -> argparse.Namespace:
 
     return parser.parse_args()
 
+def dir_setup() -> None:
+    global img_dir, out_dir
+    if not args.img_dir:
+        args.img_dir = "."
+
+    if not args.output_dir:
+        args.output_dir = args.img_dir
+    elif not os.path.exists(args.output_dir):
+        os.mkdir(args.output_dir)
+
+    img_dir = os.path.join(os.getcwd(), args.img_dir)
+    out_dir = os.path.join(os.getcwd(), args.output_dir)
+
+def watermark_setup() -> None:
+    global watermark
+    logger.info(f"Getting Watermark and applying grayscale")
+    watermark = cv.imread(WATERMARK_PATH)
+    watermark = apply_grayscale(watermark)
 
 def is_wartermarked(img: cv.Mat) -> bool:
     global watermark
@@ -73,22 +93,15 @@ def crop_image(img: cv.Mat) -> cv.Mat:
     return img[0:img.shape[0]-24, 0:img.shape[1]]
 
 def main():
-    global watermark, args
+    global watermark, args, img_dir, out_dir
     args = parse_args()
 
-    if not args.output_dir:
-        args.output_dir = args.img_dir
-    elif not os.path.exists(args.output_dir):
-        os.mkdir(args.output_dir)
-
-    out_dir = os.path.join(os.getcwd(), args.output_dir)
+    dir_setup()
 
     logger.info(f"{__description__} version: {__version__}")
-    os.chdir(args.img_dir)
+    os.chdir(img_dir)
 
-    logger.info(f"Getting Watermark and applying grayscale")
-    watermark = cv.imread(WATERMARK_PATH)
-    watermark = apply_grayscale(watermark)
+    watermark_setup()
 
     num_cropped = 0
 
