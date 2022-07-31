@@ -29,4 +29,5 @@ options:
   -o OUTPUT_DIR, --output OUTPUT_DIR
                         Output Directory
 ```
-NOTE: If no output directory is prrovided then it will overwrite each image.
+NOTE: If no image directory is provided then it will use the current directory.
+      If no output directory is provided then it will overwrite each image.
