@@ -18,5 +18,15 @@ python -m pip install .
 ### Usage
 Here is the full usage for the program:
 ```shell
-sample usage:
+usage: ifunny_watermark_remover [-h] -d IMG_DIR [-o OUTPUT_DIR]
+
+iFunny Watermark Remover Version: 1.0.0
+
+options:
+  -h, --help            show this help message and exit
+  -d IMG_DIR, --directory IMG_DIR
+                        Directory of images
+  -o OUTPUT_DIR, --output OUTPUT_DIR
+                        Output Directory
 ```
+NOTE: If no output directory is prrovided then it will overwrite each image.
