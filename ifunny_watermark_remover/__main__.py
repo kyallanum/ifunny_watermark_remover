@@ -3,6 +3,7 @@ import os
 import argparse
 import logging
 import pkg_resources
+from datetime import datetime
 from ifunny_watermark_remover._version import __description__, __tool_name__, __version__
 
 WATERMARK_PATH = pkg_resources.resource_filename(__tool_name__, "resources/watermark.jpg")
@@ -23,8 +24,8 @@ logger.propagate = False
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=f"{__description__} Version: {__version__}")
-    parser.add_argument('-d', '--directory', help="Directory of images", dest="img_dir", required=True)
-    parser.add_argument('-o', '--output', help="Output Directory", dest="output_dir")
+    parser.add_argument('-d', '--directory', help="Directory of images", dest="img_dir", required=False)
+    parser.add_argument('-o', '--output', help="Output Directory", dest="output_dir", required=False)
 
     return parser.parse_args()
 
@@ -93,6 +94,7 @@ def crop_image(img: cv.Mat) -> cv.Mat:
     return img[0:img.shape[0]-24, 0:img.shape[1]]
 
 def main():
+    start = datetime.now()
     global watermark, args, img_dir, out_dir
     args = parse_args()
 
@@ -119,6 +121,7 @@ def main():
     
     print()
     logger.info(f"Cropping Completed: {num_cropped} files cropped.")
+    logger.info(f"Finished in: {datetime.now() - start}")
 
 
 if __name__ == "__main__":
