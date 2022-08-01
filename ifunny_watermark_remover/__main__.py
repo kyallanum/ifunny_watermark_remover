@@ -106,6 +106,7 @@ def main():
     watermark_setup()
 
     num_cropped = 0
+    num_skipped = 0
 
     logger.info("Getting images:")
     for image_file in os.listdir("."):
@@ -118,9 +119,13 @@ def main():
             logger.info("Image Cropped.")
             logger.info("----------------")
             num_cropped += 1
+        else:
+            logger.info("Image not cropped.")
+            num_skipped += 1
     
     print()
     logger.info(f"Cropping Completed: {num_cropped} files cropped.")
+    logger.info(F"Number of images skipped: {num_skipped}.")
     logger.info(f"Finished in: {datetime.now() - start}")
 
 

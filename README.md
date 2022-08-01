@@ -11,13 +11,13 @@ I have not yet tested support on any other operating systems.
 
 ### Installation
 To install this app, you can download this repository and then install it with pip by running the following command while in the project directory:
-```shell
+```
 python -m pip install .
 ```
 
 ### Usage
 Here is the full usage for the program:
-```shell
+```
 usage: ifunny_watermark_remover [-h] [-d IMG_DIR] [-o OUTPUT_DIR]
 
 iFunny Watermark Remover Version: 1.0.0
