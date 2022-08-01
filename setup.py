@@ -14,7 +14,7 @@ setuptools.setup(
     author="Kyal Lanum",
     author_email="kyallanum@gmail.com",
     description=__description__,
-    url=f"https://github.com/kyallanum/{name.replace('_', '-')}",
+    url=f"https://github.com/kyallanum/{name}",
     license="LICENSE.txt",
     packages=setuptools.find_packages(),
     python_requires='>=3.8',
