@@ -4,4 +4,4 @@ images/
 build/
 dist/
 *.egg-info/
-*/__pycache__/*
+*/__pycache__/
