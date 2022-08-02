@@ -21,7 +21,7 @@ setuptools.setup(
     install_requires=[line.strip() for line in open("requirements.txt").readlines()],
     include_package_data=True,
     package_data={
-        '': ['ifunny_watermark_remover/resources/watermark.jpg']
+        '': ['resources/watermark.jpg']
     },
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
