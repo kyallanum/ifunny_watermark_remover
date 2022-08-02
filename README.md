@@ -10,9 +10,9 @@ This simple application uses opencv to read images, and then compare them to a s
 I have not yet tested support on any other operating systems.
 
 ### Installation
-To install this app, you can download this repository and then install it with pip by running the following command while in the project directory:
+To install this app, you can download the latest release .tar.gz and then install it with pip by running the following command:
 ```
-python -m pip install .
+python -m pip install iFunny-Watermark-Remover.tar.gz
 ```
 
 ### Usage
